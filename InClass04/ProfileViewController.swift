@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var departmentLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var showHideButton: UIButton!
     private var isPasswordVisible = false
     public var student:Student?
     
@@ -46,10 +47,11 @@ class ProfileViewController: UIViewController {
     func updatePasswordVisibility(){
         if isPasswordVisible {
             passwordTextField.isSecureTextEntry = false
+            showHideButton.setTitle("Hide", for: UIControlState.normal)
         }
         else{
             passwordTextField.isSecureTextEntry = true
-            
+            showHideButton.setTitle("Show", for: UIControlState.normal)
         }
     }
     

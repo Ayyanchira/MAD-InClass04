@@ -289,6 +289,7 @@
                         <outlet property="emailLabel" destination="TrL-MM-gnu" id="IBG-Wu-6s5"/>
                         <outlet property="nameTextField" destination="J78-Gj-My6" id="fyA-CS-nhF"/>
                         <outlet property="passwordTextField" destination="S8t-ma-Mdc" id="PN6-Xz-Nsu"/>
+                        <outlet property="showHideButton" destination="W6H-29-SWv" id="l2I-Ue-LLk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAn-uv-OY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
