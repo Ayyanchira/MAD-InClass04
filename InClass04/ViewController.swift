@@ -28,6 +28,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        var status = false
+        if let name = nameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text{
+            if (name != "") && (email != "") && (password != ""){
+                status = true
+            }
+            else{
+               showAlertMessage()
+            }
+        }
+        
+        return status
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Prepare for segue called")
         if segue.identifier == "profileViewSegue" {
@@ -35,7 +51,7 @@ class ViewController: UIViewController {
                 let email = emailTextField.text,
                 let password = passwordTextField.text{
                 
-                if (name != "") || (email != "") || (password != ""){
+                if (name != "") && (email != "") && (password != ""){
                     let student = Student(name: name, password: password, email: email, department: departmentSegmentedControl.titleForSegment(at: departmentSegmentedControl.selectedSegmentIndex)!)
                     let profileViewController = segue.destination as! ProfileViewController
                     profileViewController.student = student
