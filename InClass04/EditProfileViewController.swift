@@ -12,33 +12,45 @@ class EditProfileViewController: UIViewController {
 
     public var condition:String?
     public var parentView:Any?
+    public var departmentDictionary:[String:Int] = [
+        "CS":0,
+        "SIS":1,
+        "BIO":2
+    ]
     
     @IBOutlet weak var studentEditTextField: UITextField!
     @IBOutlet weak var editLabel: UILabel!
     @IBOutlet weak var departmentSegment: UISegmentedControl!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let parentVC = parentView as? ProfileViewController
+        
         if let segue = condition{
             switch segue {
             case "nameEditSegue":
                 editLabel.text = "Name"
                 studentEditTextField.isHidden = false
+                studentEditTextField.text = parentVC?.student?.name
                 departmentSegment.isHidden = true
+                
             case "passwordEditSegue":
                 editLabel.text = "Password"
                 studentEditTextField.isHidden = false
                 studentEditTextField.isSecureTextEntry = true
+                studentEditTextField.text = parentVC?.student?.password
                 departmentSegment.isHidden = true
             case "departmentEditSegue":
                 editLabel.text = "Department"
                 studentEditTextField.isHidden = true
                 departmentSegment.isHidden = false
+                departmentSegment.selectedSegmentIndex = departmentDictionary[(parentVC?.student?.department)!]!
+                
             case "emailEditSegue":
                 editLabel.text = "Email"
                 studentEditTextField.isHidden = false
                 departmentSegment.isHidden = true
+                studentEditTextField.text = parentVC?.student?.emailid
             default:
                 print("default case executed")
             }
