@@ -12,42 +12,54 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var departmentLabel: UILabel!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     private var isPasswordVisible = false
     public var student:Student?
     
     @IBAction func showPasswordButtonPressed(_ sender: UIButton) {
         isPasswordVisible = !(isPasswordVisible)
-        showPassword()
+        updatePasswordVisibility()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.text = student?.name
-        emailLabel.text = student?.emailid
-        //passwordLabel.text = student?.password
-        showPassword()
-        departmentLabel.text = student?.department
+        
         // Do any additional setup after loading the view.
-    }
-
+    }    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func showPassword(){
+    override func viewWillAppear(_ animated: Bool) {
+        isPasswordVisible = false
+        nameTextField.text = student?.name
+        emailLabel.text = student?.emailid
+        passwordTextField.text = student?.password
+        departmentLabel.text = student?.department
+        updatePasswordVisibility()
+    }
+    
+    func updatePasswordVisibility(){
         if isPasswordVisible {
-            passwordLabel.text = student?.password
+            passwordTextField.isSecureTextEntry = false
         }
         else{
-            var password = passwordLabel.text
+            passwordTextField.isSecureTextEntry = true
             
-            passwordLabel.text = "******"
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let editViewController = segue.destination as? EditProfileViewController
+        editViewController?.condition = segue.identifier
+        editViewController?.parentView = self
+    }
+    
+
     /*
     // MARK: - Navigation
 
