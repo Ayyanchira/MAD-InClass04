@@ -221,6 +221,9 @@
                                                             </stackView>
                                                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="A Very Big Password to accomodate big ones" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S8t-ma-Mdc">
                                                                 <rect key="frame" x="0.0" y="30.5" width="296" height="17"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="296" id="Psj-0e-ZYe"/>
+                                                                </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
